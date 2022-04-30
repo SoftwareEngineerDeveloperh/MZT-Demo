@@ -20,15 +20,16 @@ class CandidateController extends Controller
 
     public function contact($id){
         // @todo
-        // send email to the candidate
+        
         $candidate_email = Candidate::where('id', $id)->first()->email;
         $mailInfo = [
             'title' => 'Mail from mzt.com',
             'body' => 'Welcome your contacting'
         ];       
-        
+        // send email
         Mail::to('developerh99@gmail.com')->send(new \App\Mail\MztSendMail($mailInfo));	
 
+        // cost coins
         $wallet = Wallet::where('company_id', 1)->find(1);
         $coins = $wallet->coins;
         $coins = ($coins - 5) > 0 ? $coins - 5 : 0;
