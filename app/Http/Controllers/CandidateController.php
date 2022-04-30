@@ -27,7 +27,8 @@ class CandidateController extends Controller
             'body' => 'Welcome your contacting'
         ];       
         // send email
-        Mail::to('developerh99@gmail.com')->send(new \App\Mail\MztSendMail($mailInfo));	
+        Mail::to($candidate_email)->send(new \App\Mail\MztSendMail($mailInfo));	
+        // Mail::to('developerh99@gmail.com')->send(new \App\Mail\MztSendMail($mailInfo));	
 
         // cost coins
         $wallet = Wallet::where('company_id', 1)->find(1);
@@ -54,7 +55,7 @@ class CandidateController extends Controller
             'body' => 'You are hired'
         ];
 
-        Mail::to('developerh99@gmail.com')->send(new \App\Mail\MztSendMail($mailInfo));	       
+        Mail::to($candidate_email)->send(new \App\Mail\MztSendMail($mailInfo));	       
 
         $wallet = Wallet::where('company_id', 1)->find(1);
         $coins = $wallet->coins;
